@@ -1,11 +1,11 @@
-# Build a REST API in PHP for a code challenge
+## Build a REST API in PHP for a code challenge
 
 This example shows how to build a simple REST API in core PHP.
 
 **Prerequisites:** PHP, Composer, MySQL
 
 
-## Getting Started
+### Getting Started
 
 Clone this project using the following commands:
 
