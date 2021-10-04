@@ -26,7 +26,7 @@ class ReportRepository {
                 "accessor"=> "week_end_date"
               ],
               [
-                "Header"=> "Turnover",
+                "Header"=> "Turnover (EURO)",
                 "accessor"> "turnover"
     
               ]
@@ -57,7 +57,7 @@ class ReportRepository {
                 "accessor"=> "week_end_date"
               ],
               [
-                "Header"=> "Turnover",
+                "Header"=> "Turnover (EURO)",
                 "accessor"> "turnover"
     
               ]

@@ -30,6 +30,7 @@ class ReportController {
             return $this->notFoundResponse();
         }
         $result=null;
+
         switch($request['type']){
             case  'brand':  
                 $result = $this->reportRepository->getBrandReport($request);break;
@@ -48,45 +49,45 @@ class ReportController {
 
     public function processRequest()
     {
-       
-      
-       
+     
         switch ($this->requestMethod) {
             case 'GET':
-                
+                // GET APIs
           
                 break;
             case 'POST':
+                // POST APIs
                 if ($this->method=='turnover') {
                     $this->input['tax']=$this->tax;
                     $response = $this->getTurnOverReport($this->input);
 
                 } else{
-
+                    //another method
 
                 }
                 break;
             case 'PUT':
-                //
+                 // PUT APIs
                 break;
             case 'DELETE':
-                //
-                break;
-            default:
-                $response = $this->notFoundResponse();
-                break;
+                 // DELETE APIs
+            }
+
+        if (empty($response)){
+            return $this->unprocessableEntityResponse('Requested method is invalid.');
         }
+        
         header($response['status_code_header']);
         if ($response['body']) {
             echo $response['body'];
         }
     }
 
-    private function unprocessableEntityResponse()
+    private function unprocessableEntityResponse($message)
     {
         $response['status_code_header'] = 'HTTP/1.1 422 Unprocessable Entity';
         $response['body'] = json_encode([
-            'error' => 'Invalid input'
+            'error' => $message
         ]);
         return $response;
     }
