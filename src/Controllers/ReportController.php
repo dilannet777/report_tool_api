@@ -30,6 +30,7 @@ class ReportController {
             return $this->notFoundResponse();
         }
         $result=null;
+  
 
         switch($request['type']){
             case  'brand':  
@@ -38,11 +39,15 @@ class ReportController {
                 $result = $this->reportRepository->getDailyReport($request);break;
 
           }
-        if (empty($result)) {
-            return $this->notFoundResponse();
+        if (!empty($result)) {
+            $response['status_code_header'] = 'HTTP/1.1 200 OK';
+            $response['body'] = json_encode($result);
+
+        }else {
+            $response= $this->unprocessableEntityResponse('Requested method is invalid.');
+        
         }
-        $response['status_code_header'] = 'HTTP/1.1 200 OK';
-        $response['body'] = json_encode($result);
+       
         return $response;
 
     }
@@ -73,9 +78,7 @@ class ReportController {
                  // DELETE APIs
             }
 
-        if (empty($response)){
-            return $this->unprocessableEntityResponse('Requested method is invalid.');
-        }
+   
 
         header($response['status_code_header']);
         if ($response['body']) {
@@ -83,7 +86,7 @@ class ReportController {
         }
     }
 
-    private function unprocessableEntityResponse($message)
+    private function unprocessableEntityResponse($message="")
     {
         $response['status_code_header'] = 'HTTP/1.1 422 Unprocessable Entity';
         $response['body'] = json_encode([
@@ -93,7 +96,7 @@ class ReportController {
     }
 
     private function notFoundResponse()
-    {
+    {  
         $response['status_code_header'] = 'HTTP/1.1 404 Not Found';
         $response['body'] = null;
         return $response;
