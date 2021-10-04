@@ -45,7 +45,7 @@ class ReportRepository {
     }
 
 
-    public function getDayReport($request)
+    public function getDailyReport($request)
     {
         $sql = "SELECT date(max(date)) as week_end_date, round(sum(turnover - (turnover * $request[tax]))/7,2) as turnover FROM gmv GROUP BY WEEK(date) order by WEEK(date)";
         $header =[

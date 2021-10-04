@@ -34,8 +34,8 @@ class ReportController {
         switch($request['type']){
             case  'brand':  
                 $result = $this->reportRepository->getBrandReport($request);break;
-            case  'day':
-                $result = $this->reportRepository->getDayReport($request);break;
+            case  'daily':
+                $result = $this->reportRepository->getDailyReport($request);break;
 
           }
         if (empty($result)) {
@@ -76,7 +76,7 @@ class ReportController {
         if (empty($response)){
             return $this->unprocessableEntityResponse('Requested method is invalid.');
         }
-        
+
         header($response['status_code_header']);
         if ($response['body']) {
             echo $response['body'];
