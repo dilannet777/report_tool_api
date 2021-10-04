@@ -39,7 +39,7 @@ composer install
 php -S 127.0.0.1:8000 -t public
 ```
 
-Loading [127.0.0.1:8000/api/reports/turnover](http://127.0.0.1:8000/api/reports/turnover) should return a 404 Not fund response now.
+Loading [127.0.0.1:8000/api/reports/turnover](http://127.0.0.1:8000/api/reports/turnover) should return a 404 Not found response now.
 
 
 
