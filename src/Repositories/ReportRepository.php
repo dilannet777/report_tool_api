@@ -27,8 +27,7 @@ class ReportRepository {
               ],
               [
                 "Header"=> "Turnover (EURO)",
-                "accessor"> "turnover"
-    
+                "accessor"=> "turnover"
               ]
             ]
             ];
@@ -58,8 +57,7 @@ class ReportRepository {
               ],
               [
                 "Header"=> "Turnover (EURO)",
-                "accessor"> "turnover"
-    
+                "accessor"=> "turnover"
               ]
             ]
             ];
