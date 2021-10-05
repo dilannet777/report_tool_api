@@ -64,7 +64,7 @@ After that, you should see the client app execute some API requests and dump the
 
 ### Testing
 ```
-./vendor/bin/phpunit
+composer test
 ```
 
 ### Front-end Code
