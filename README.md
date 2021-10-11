@@ -57,7 +57,7 @@ Report - 7 Days Turnover Per Day
 curl --location --request POST 'http://127.0.0.1:8000/api/reports/turnover' \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/json' \
---data-raw '{"type":"day"}'
+--data-raw '{"type":"daily"}'
 ```
 
 After that, you should see the client app execute some API requests and dump the output.
