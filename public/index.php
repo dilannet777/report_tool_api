@@ -1,7 +1,11 @@
 <?php
 require "../bootstrap.php";
 
-use Src\Controllers\ReportController;
+use Src\Controllers\TurnoverReportController;
+use Phroute\Phroute\RouteCollector;
+use Phroute\Phroute\Dispatcher;
+
+
 
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -14,41 +18,33 @@ if ($method == "OPTIONS") {
     die();
 }
 
-$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$uri = explode('/', $uri);
+$router = new RouteCollector();
 
-// all of our endpoints start with /api
-// everything else results in a 404 Not Found
 
-if (empty($uri[1]) || $uri[1] !== 'api') {
+$router->any('/', function () {
+    return 'REPORT APIS V.1.0.0';
+});
+
+$router->post('api/reports/turnover', function () {
+    $input = (array) json_decode(file_get_contents('php://input'), TRUE);
+    $invokeReportTurnover = new turnoverReportController();
+    return $invokeReportTurnover($input);
+});
+
+
+
+# NB. You can cache the return value from $router->getData() so you don't have to create the routes each request - massive speed gains
+$dispatcher = new Dispatcher($router->getData());
+
+try {
+    $response = $dispatcher->dispatch($_SERVER['REQUEST_METHOD'], parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+    // Print out the value returned from the dispatched function
+    header($response['status_code_header']);
+    if ($response['body']) {
+        echo json_encode($response['body']);
+    }
+} catch (Exception $e) {
     header("HTTP/1.1 404 Not Found");
+    echo json_encode(['error' => $e->getMessage()]);
     exit();
-}
-
-if (empty($uri[2]) || $uri[2] !== 'reports') {
-    header("HTTP/1.1 404 Not Found");
-    exit();
-}
-
-if (empty($uri[3]) || $uri[3] !== 'turnover') {
-    header("HTTP/1.1 404 Not Found");
-    exit();
-}
-
-
-$requestMethod = $_SERVER["REQUEST_METHOD"];
-
-switch ($uri[2]) {
-    case 'reports': {
-
-            $controller = new ReportController($dbConnection, $requestMethod, $uri[3]);
-            if ($uri[3] == 'turnover') {
-                $controller->processRequest();
-            }
-        };
-        break;
-    default: {
-            header("HTTP/1.1 404 Not Found");
-            exit();
-        }
 }

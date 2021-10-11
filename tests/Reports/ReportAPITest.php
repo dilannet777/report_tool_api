@@ -25,7 +25,6 @@ class ReportAPITest extends TestCase
     public function testTurnoverDailyReport()
     {
         
-        
         $response = $this->client->request('POST','/api/reports/turnover',[
             'headers' => [ 'Accept' => 'application/json'],
             'json'=>['type' => 'daily']]);

@@ -1,11 +1,70 @@
 <?php
 namespace Src\Controllers;
 
-use Src\Repositories\ReportRepository;
+use Src\Services\Reports\TurnoverReportService;
+use Src\Controllers\Controller;
+/**
+ * retrieve Turnover Report Details
+ */
+class TurnoverReportController extends Controller{
 
-class ReportController {
+   
+   /**
+     * User Turnover Report Service.
+     * 
+     * @var Turnover Reports
+    */
+    private $turnoverReportService;
+    
+    
+    
+    /**
+     * 
+     * @param  $userService User service.
+     */
+    public function __construct() {
+        $this->turnoverReportService = new TurnoverReportService();
+        $this->tax=getenv('TAX_VAT');
+    }
 
-    private $db;
+    /**
+     * Invoke.
+     * 
+     * @param ServerRequestInterface $request Request.
+     * @return void
+     */
+    public function __invoke($request) {
+      
+        $result=null;
+      
+        if (empty($request['type'])){
+            return $this->notFoundResponse();
+        }
+        $request['tax']=$this->tax; 
+        switch($request['type']){
+            case  'brand':
+                $result =  $this->turnoverReportService->getTurnoverBrandReport($request);break;
+            case  'daily':
+                $result =  $this->turnoverReportService->getTurnoverDailyReport($request);
+
+          }
+        if (empty($result))
+            return $this->unprocessableEntityResponse('Requested method is invalid.');
+
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['body'] = $result;
+        return $response;
+
+    }
+
+
+
+
+
+
+   
+   
+    /* private $db;
     private $requestMethod;
     private $method;
     private $input;
@@ -39,15 +98,16 @@ class ReportController {
                 $result = $this->reportRepository->getDailyReport($request);break;
 
           }
-        if (!empty($result)) {
-            $response['status_code_header'] = 'HTTP/1.1 200 OK';
-            $response['body'] = json_encode($result);
+        if (empty($result)) {
+           // $response['status_code_header'] = 'HTTP/1.1 200 OK';
+           // $response['body'] = json_encode($result);
 
-        }else {
-            $response= $this->unprocessableEntityResponse('Requested method is invalid.');
+      //  }else {
+           return $this->unprocessableEntityResponse('Requested method is invalid.');
         
         }
-       
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['body'] = json_encode($result);
         return $response;
 
     }
@@ -101,4 +161,5 @@ class ReportController {
         $response['body'] = null;
         return $response;
     }
+    */
 }

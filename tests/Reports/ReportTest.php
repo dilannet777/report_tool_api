@@ -3,7 +3,7 @@
 namespace Tests\Reports;
 
 
-use Src\Controllers\ReportController;
+use Src\Controllers\TurnoverReportController;
 use PHPUnit\Framework\TestCase;
 
 
@@ -12,16 +12,17 @@ class ReportTest extends TestCase
     // tested getTurnOverReport()
     public function testReportTypeIsEmpty()
     {
-        $controller = new ReportController(null, 'GET', 'turnover');
-        $response = $controller->getTurnOverReport([]);
+     
+        $invokeReportTurnover = new turnoverReportController();
+        $response =$invokeReportTurnover([]);
         $this->assertSame($response, ['status_code_header' => 'HTTP/1.1 404 Not Found', 'body' => null]);
     }
 
     // tested getTurnOverReport()
    public function testReportTypeIsNotExist()
     {
-        $controller = new ReportController(null, 'GET', 'turnover');
-        $response = $controller->getTurnOverReport(["type" => "brnad"]);
+        $invokeReportTurnover = new turnoverReportController();
+        $response =$invokeReportTurnover(["type" => "brnad"]);
         $this->assertSame($response, ['status_code_header' => 'HTTP/1.1 422 Unprocessable Entity', 'body' => '{"error":"Requested method is invalid."}']);
     }
 
