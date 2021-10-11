@@ -1,6 +1,15 @@
 ## Build a REST API in PHP for a code challenge
 
-This example shows how to build a simple REST API in core PHP.
+This example shows how to build a industry level REST API in core PHP.
+
+This framework appliable to any application based on MVC.
+
+An application based on the MVC pattern should be composed of three parts:
+
+   * delivery mechanism: Json response (user request handling and server response creation)
+   * service layer: application logic
+   * domain model: business logic
+
 
 **Prerequisites:** PHP, Composer, MySQL
 
