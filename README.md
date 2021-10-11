@@ -4,7 +4,7 @@ This example shows how to build a industry level REST API in core PHP.
 
 This framework appliable to any application based on MVC.
 
-An application based on the MVC pattern should be composed of three parts:
+An application based on the MVC pattern which has been composed of three parts:
 
    * delivery mechanism: Json response (user request handling and server response creation)
    * service layer: application logic
