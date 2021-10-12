@@ -10,6 +10,10 @@ An application based on the MVC pattern which has been composed of three parts:
    * service layer: application logic
    * domain model: business logic
 
+Here is the graphical representation (of my own making):
+
+![MVC](https://user-images.githubusercontent.com/80531625/136906890-09e1cc28-fa9b-41af-a9e3-0673f7bae5bf.jpg)
+
 
 **Prerequisites:** PHP, Composer, MySQL
 
