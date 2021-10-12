@@ -1,6 +1,6 @@
 ## Build a REST API in PHP for a code challenge
 
-This example shows how to build a industry level REST API in core PHP.
+This example shows how to build the industry level REST APIs in core PHP.
 
 This framework appliable to any application based on MVC.
 
