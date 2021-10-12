@@ -1,4 +1,4 @@
-## Build a REST API in PHP for a code challenge
+## Build a REST API in PHP for a Code Challenge
 
 This example shows how to build the industry level REST APIs in core PHP.
 
