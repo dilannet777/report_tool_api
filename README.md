@@ -1,6 +1,18 @@
-## Build a REST API in PHP for a code challenge
+## Build a REST API in PHP for a Code Challenge
 
-This example shows how to build a simple REST API in core PHP.
+This example shows how to build the industry level REST APIs in core PHP.
+
+This framework appliable to any application based on MVC.
+
+An application based on the MVC pattern which has been composed of three parts:
+
+   * delivery mechanism: Json response (user request handling and server response creation)
+   * service layer: application logic
+   * domain model: business logic
+
+Here is the graphical representation (of my own making):
+
+![MVC](https://user-images.githubusercontent.com/80531625/136907184-429bdea4-b0af-42ab-8233-e016146cb032.jpg)
 
 **Prerequisites:** PHP, Composer, MySQL
 
@@ -57,7 +69,7 @@ Report - 7 Days Turnover Per Day
 curl --location --request POST 'http://127.0.0.1:8000/api/reports/turnover' \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/json' \
---data-raw '{"type":"day"}'
+--data-raw '{"type":"daily"}'
 ```
 
 After that, you should see the client app execute some API requests and dump the output.
